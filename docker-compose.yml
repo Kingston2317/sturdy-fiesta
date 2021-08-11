@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+    backend:
+        build: storefinder/
+        deploy:
+            resources:
+              limits:
+                memory: 256M
+
+    frontend:
+        build: ui/
+        ports: 
+            - "8080:80"
+        deploy:
+            resources:
+              limits:
+                memory: 32M
