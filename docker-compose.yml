@@ -1,17 +1,41 @@
 version: "3.9"
 services:
-    backend:
-        build: storefinder/
-        deploy:
-            resources:
-              limits:
-                memory: 256M
+  backend:
+    build: storefinder/
+    environment:
+      - MARIADB_HOST=mariadb
+      - MARIADB_PORT_NUMBER=3306
+      - MARIADB_USER=root
+      - MARIADB_PASSWORD=root
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    depends_on:
+      - mariadb
 
-    frontend:
-        build: ui/
-        ports: 
-            - "8080:80"
-        deploy:
-            resources:
-              limits:
-                memory: 32M
+  frontend:
+    build: ui/
+    ports:
+        - "8080:80"
+    deploy:
+        resources:
+          limits:
+            memory: 32M
+    depends_on:
+      - backend
+
+  mariadb:
+    image: mariadb:10.6
+    volumes:
+      - mariadb:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=root
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+volumes:
+  mariadb:
