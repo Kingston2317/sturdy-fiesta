@@ -1,6 +1,9 @@
 # sturdy-fiesta
 Application development
 
+# Wiki
+Project wiki can be found at [https://github.com/Kingston2317/sturdy-fiesta/wiki](https://github.com/Kingston2317/sturdy-fiesta/wiki)
+
 ## Building backend
 - Building and packaging backend is intentionally not automated now
 - After any backend changes, Please build/package the backend manually before trying to start the app using maven or from IDE so that jar file gets created
